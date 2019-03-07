@@ -11,22 +11,22 @@ void _onClicked(String filename) {
 }
 
 List data = [
-  'er1-bd1',
-  'er1-bd2',
-  'er1-clap',
-  'er1-cymbnoiz',
-  'er1-fjutt',
-  'er1-fjutt2',
-  'er1-hhcl',
-  'er1-hhop',
-  'er1-noisebd',
-  'er1-ping',
-  'er1-pong',
-  'er1-snare',
-  'er1-tabla',
-  'er1-tom2',
-  'er1-tom3',
-  'er1-tomrock'
+  'KICK',
+  'TAP',
+  'SNARE',
+  'CLAPZ',
+  'BOOM',
+  'HIHAT',
+  'GUN',
+  'CLAP',
+  'BASS 1',
+  'BASS 2',
+  'ROBOT',
+  'VOX',
+  'PIANO',
+  'WAR',
+  'LISTEN',
+  'SUB',
 ];
 
 class MyApp extends StatelessWidget {
@@ -37,19 +37,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Drum Machine'),
-            backgroundColor: Colors.blueGrey,
-          ),
-          body: OrientationBuilder(
-            builder: (context, orientation) {
-              return GridView.builder(
-                itemCount: data.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount:
-                        orientation == Orientation.portrait ? 3 : 6),
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
+        appBar: AppBar(
+          title: const Text('Drum Machine'),
+          backgroundColor: Colors.blueGrey,
+        ),
+        body: OrientationBuilder(
+          builder: (context, orientation) {
+            return GridView.builder(
+              itemCount: data.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: orientation == Orientation.portrait ? 3 : 6),
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onLongPress: () => debugPrint("TEST"),
+                  child: Padding(
                     padding: EdgeInsets.all(10.0),
                     child: SizedBox(
                       width: 100,
@@ -63,11 +64,13 @@ class MyApp extends StatelessWidget {
                         onPressed: () => _onClicked(data[index]),
                       ),
                     ),
-                  );
-                },
-              );
-            },
-          )),
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ),
     );
   }
 }
